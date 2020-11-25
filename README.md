@@ -1,2 +1,2 @@
-# go-bookstore-oauth-api
-OAuth API for go microservices course
+# go-bookstore-users-api
+Users API for go microservices course
