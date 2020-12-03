@@ -2,6 +2,7 @@ package users
 
 import (
 	"fmt"
+	"github.com/Komdosh/go-bookstore-users-api/utils/date"
 	"github.com/Komdosh/go-bookstore-users-api/utils/errors"
 )
 
@@ -26,12 +27,17 @@ func (user *User) Get() *errors.RestErr {
 
 func (user *User) Save() *errors.RestErr {
 	current := usersDB[user.Id]
+
 	if current != nil {
 		if current.Email == user.Email {
 			return errors.NewBadRequestError(fmt.Sprintf("email %d already registered", user.Id))
 		}
 		return errors.NewBadRequestError(fmt.Sprintf("user %d already exists", user.Id))
 	}
+
+	user.DateCreated = date.GetNowString()
+
 	usersDB[user.Id] = user
+
 	return nil
 }
