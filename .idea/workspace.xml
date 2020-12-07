@@ -19,8 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da6052ef-f04a-4edb-858c-77ad0fd4fc93" name="Default Changelist" comment="feat(dao): implement user dao">
-      <change afterPath="$PROJECT_DIR$/utils/date/date_utils.go" afterDir="false" />
+    <list default="true" id="da6052ef-f04a-4edb-858c-77ad0fd4fc93" name="Default Changelist" comment="feat(date): add date utils">
+      <change afterPath="$PROJECT_DIR$/datasources/postgresql/users_db/users_db.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/domain/users/user_dao.go" beforeDir="false" afterPath="$PROJECT_DIR$/domain/users/user_dao.go" afterDir="false" />
     </list>
@@ -135,10 +135,17 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="HTTP Request.user-requests#2">
+  <component name="RunManager" selected="Go Build.go build github.com/Komdosh/go-bookstore-users-api">
     <configuration name="go build github.com/Komdosh/go-bookstore-users-api" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="go-bookstore-users-api" />
       <working_directory value="$PROJECT_DIR$" />
+      <envs>
+        <env name="postgres_users_username" value="gousr" />
+        <env name="postgres_users_password" value="gousr" />
+        <env name="postgres_users_host" value="127.0.0.1" />
+        <env name="postgres_users_port" value="5432" />
+        <env name="postgres_users_database" value="gomicroservices" />
+      </envs>
       <kind value="PACKAGE" />
       <filePath value="$PROJECT_DIR$/main.go" />
       <package value="github.com/Komdosh/go-bookstore-users-api" />
@@ -151,11 +158,16 @@
     <configuration name="user-requests#2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/user-requests.http" index="2" runType="Run single request">
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Go Build.go build github.com/Komdosh/go-bookstore-users-api" />
+      <item itemvalue="HTTP Request.user-requests#1" />
+      <item itemvalue="HTTP Request.user-requests#2" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build github.com/Komdosh/go-bookstore-users-api" />
         <item itemvalue="HTTP Request.user-requests#2" />
         <item itemvalue="HTTP Request.user-requests#1" />
-        <item itemvalue="Go Build.go build github.com/Komdosh/go-bookstore-users-api" />
       </list>
     </recent_temporary>
   </component>
@@ -179,40 +191,18 @@
     <MESSAGE value="feat(init): skeleton of project" />
     <MESSAGE value="feat(controller): add user controller" />
     <MESSAGE value="feat(dao): implement user dao" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(dao): implement user dao" />
+    <MESSAGE value="feat(date): add date utils" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(date): add date utils" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="828" y="183" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606727291238">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="828" y="183" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1606727291238" />
-    <state x="1220" y="283" key="FileChooserDialogImpl" timestamp="1606383322383">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="1220" y="283" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1606383322383" />
-    <state width="914" height="284" key="GridCell.Tab.0.bottom" timestamp="1606972114921">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="914" height="284" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1606972114921" />
-    <state width="914" height="284" key="GridCell.Tab.0.center" timestamp="1606972114921">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="914" height="284" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1606972114921" />
-    <state width="914" height="284" key="GridCell.Tab.0.left" timestamp="1606972114921">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="914" height="284" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1606972114921" />
-    <state width="914" height="284" key="GridCell.Tab.0.right" timestamp="1606972114921">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="914" height="284" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1606972114921" />
-    <state x="1032" y="248" key="Vcs.Push.Dialog.v2" timestamp="1606971964035">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="1032" y="248" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1606971964035" />
-    <state x="1103" y="233" width="672" height="678" key="search.everywhere.popup" timestamp="1606727371868">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="1103" y="233" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1606727371868" />
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/datasources/postgresql/users_db/users_db.go</url>
+          <line>29</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

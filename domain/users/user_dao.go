@@ -2,6 +2,7 @@ package users
 
 import (
 	"fmt"
+	"github.com/Komdosh/go-bookstore-users-api/datasources/postgresql/users_db"
 	"github.com/Komdosh/go-bookstore-users-api/utils/date"
 	"github.com/Komdosh/go-bookstore-users-api/utils/errors"
 )
@@ -11,6 +12,11 @@ var (
 )
 
 func (user *User) Get() *errors.RestErr {
+
+	if err := users_db.Client.Ping(); err != nil {
+		panic(err)
+	}
+
 	result := usersDB[user.Id]
 	if result == nil {
 		return errors.NewNotFoundError(fmt.Sprintf("user %d not found", user.Id))
