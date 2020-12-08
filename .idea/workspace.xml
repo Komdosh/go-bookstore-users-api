@@ -19,13 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da6052ef-f04a-4edb-858c-77ad0fd4fc93" name="Default Changelist" comment="feat(sql): add db connection">
+    <list default="true" id="da6052ef-f04a-4edb-858c-77ad0fd4fc93" name="Default Changelist" comment="feat(sql): save user to db">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasources/postgresql/users_db/users_db.go" beforeDir="false" afterPath="$PROJECT_DIR$/datasources/postgresql/users_db/users_db.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/domain/users/user_dao.go" beforeDir="false" afterPath="$PROJECT_DIR$/domain/users/user_dao.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-requests.http" beforeDir="false" afterPath="$PROJECT_DIR$/user-requests.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/date/date_utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/date/date_utils.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/errors/rest_error.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/errors/rest_error.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +70,53 @@
   <component name="RestClientSettings">
     <option name="REQUEST_HISTORY">
       <list>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/users/13" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/users/123" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;id&quot;: 13&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/users/123" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;id&quot;: 123,&#10;  &quot;first_name&quot;: &quot;Andrey&quot;,&#10;  &quot;last_name&quot;: &quot;Tabakov&quot;,&#10;  &quot;email&quot;: &quot;komdosh@yandex.ru&quot;&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
         <RestClientRequest>
           <option name="httpMethod" value="POST" />
           <option name="urlBase" value="http://localhost:8080/users" />
@@ -140,7 +184,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="HTTP Request.user-requests#1">
+  <component name="RunManager" selected="HTTP Request.user-requests#2">
     <configuration name="go build github.com/Komdosh/go-bookstore-users-api" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="go-bookstore-users-api" />
       <working_directory value="$PROJECT_DIR$" />
@@ -170,9 +214,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.user-requests#1" />
-        <item itemvalue="Go Build.go build github.com/Komdosh/go-bookstore-users-api" />
         <item itemvalue="HTTP Request.user-requests#2" />
+        <item itemvalue="Go Build.go build github.com/Komdosh/go-bookstore-users-api" />
+        <item itemvalue="HTTP Request.user-requests#1" />
       </list>
     </recent_temporary>
   </component>
@@ -198,6 +242,7 @@
     <MESSAGE value="feat(dao): implement user dao" />
     <MESSAGE value="feat(date): add date utils" />
     <MESSAGE value="feat(sql): add db connection" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(sql): add db connection" />
+    <MESSAGE value="feat(sql): save user to db" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(sql): save user to db" />
   </component>
 </project>

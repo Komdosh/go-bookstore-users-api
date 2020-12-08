@@ -9,12 +9,5 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8080/users/123
+GET http://localhost:8080/users/13
 Content-Type: application/json
-
-{
-  "id": 123,
-  "first_name": "Andrey",
-  "last_name": "Tabakov",
-  "email": "komdosh@yandex.ru"
-}
