@@ -32,12 +32,12 @@ func init() {
 		host, port, username, password, database)
 
 	var err error
-	UsersDB, err := sql.Open("postgres", psqlInfo)
+	Client, err = sql.Open("postgres", psqlInfo)
 	if err != nil {
 		panic(nil)
 	}
 
-	if err := UsersDB.Ping(); err != nil {
+	if err := Client.Ping(); err != nil {
 		panic(err)
 	}
 
