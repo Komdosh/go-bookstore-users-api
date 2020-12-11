@@ -9,5 +9,18 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8080/users/133
+GET http://localhost:8080/users/13
 Content-Type: application/json
+
+###
+
+PUT http://localhost:8080/users/13
+Content-Type: application/json
+
+{
+  "id": 13,
+  "first_name": "Andrey",
+  "last_name": "Tabakov",
+  "email": "komdosh@yandex.ru",
+  "date_created": "12-08-2020T080:33:46Z"
+}

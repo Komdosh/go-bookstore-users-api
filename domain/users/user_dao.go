@@ -10,6 +10,8 @@ import (
 const (
 	queryInsertUser     = "INSERT INTO users_db.users(first_name, last_name, email, date_created) VALUES ($1, $2, $3, $4) RETURNING id;"
 	querySelectUserById = "SELECT id, first_name, last_name, email, date_created FROM users_db.users WHERE id = $1;"
+	queryUpdateUser     = "UPDATE users_db.users SET first_name=$1, last_name=$2, email=$3 WHERE id=$4;"
+	queryDeleteUser     = "DELETE FROM users_db.users WHERE id=$1;"
 )
 
 func (user *User) Get() *errors.RestErr {
@@ -43,6 +45,38 @@ func (user *User) Save() *errors.RestErr {
 	}
 
 	user.Id = userId
+
+	return nil
+}
+
+func (user *User) Update(newUser User) *errors.RestErr {
+	stmt, err := users_db.Client.Prepare(queryUpdateUser)
+	if err != nil {
+		return errors.NewInternalServerError(err.Error())
+	}
+	defer stmt.Close()
+
+	_, err = stmt.Exec(user.FirstName, user.LastName, user.Email, user.Id)
+
+	if err != nil {
+		return postgres_utils.ParseErr(err)
+	}
+
+	return nil
+}
+
+func (user *User) Delete() *errors.RestErr {
+	stmt, err := users_db.Client.Prepare(queryDeleteUser)
+	if err != nil {
+		return errors.NewInternalServerError(err.Error())
+	}
+	defer stmt.Close()
+
+	_, err = stmt.Exec(user.Id)
+
+	if err != nil {
+		return postgres_utils.ParseErr(err)
+	}
 
 	return nil
 }
