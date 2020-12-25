@@ -3,16 +3,16 @@ package users
 import (
 	"github.com/Komdosh/go-bookstore-users-api/domain/users"
 	"github.com/Komdosh/go-bookstore-users-api/services"
-	"github.com/Komdosh/go-bookstore-users-api/utils/errors"
+	"github.com/Komdosh/go-bookstore-users-api/utils/errors_utils"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
 )
 
-func getUserId(userIdParam string) (int64, *errors.RestErr) {
+func getUserId(userIdParam string) (int64, *errors_utils.RestErr) {
 	userId, userErr := strconv.ParseInt(userIdParam, 10, 64)
 	if userErr != nil {
-		return 0, errors.NewBadRequestError("user id should be a number")
+		return 0, errors_utils.NewBadRequestError("user id should be a number")
 	}
 	return userId, nil
 }
@@ -21,7 +21,7 @@ func Create(c *gin.Context) {
 	var user users.User
 
 	if err := c.ShouldBindJSON(&user); err != nil {
-		restErr := errors.NewBadRequestError("invalid json body")
+		restErr := errors_utils.NewBadRequestError("invalid json body")
 
 		c.JSON(restErr.Status, restErr)
 		return
@@ -33,7 +33,7 @@ func Create(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusCreated, result)
+	c.JSON(http.StatusCreated, result.Marshall(c.GetHeader("X-Public") == "true"))
 }
 
 func Get(c *gin.Context) {
@@ -42,13 +42,13 @@ func Get(c *gin.Context) {
 		c.JSON(err.Status, err)
 	}
 
-	result, getErr := services.GetUser(userId)
+	user, getErr := services.GetUser(userId)
 	if getErr != nil {
 		c.JSON(getErr.Status, getErr)
 		return
 	}
 
-	c.JSON(http.StatusOK, result)
+	c.JSON(http.StatusOK, user.Marshall(c.GetHeader("X-Public") == "true"))
 }
 
 func Update(c *gin.Context) {
@@ -60,7 +60,7 @@ func Update(c *gin.Context) {
 
 	var user users.User
 	if err := c.ShouldBindJSON(&user); err != nil {
-		restErr := errors.NewBadRequestError("invalid json body")
+		restErr := errors_utils.NewBadRequestError("invalid json body")
 
 		c.JSON(restErr.Status, restErr)
 		return
@@ -75,7 +75,7 @@ func Update(c *gin.Context) {
 		c.JSON(err.Status, err)
 		return
 	}
-	c.JSON(http.StatusOK, result)
+	c.JSON(http.StatusOK, result.Marshall(c.GetHeader("X-Public") == "true"))
 }
 
 func Delete(c *gin.Context) {
@@ -100,5 +100,5 @@ func Search(c *gin.Context) {
 		c.JSON(err.Status, err)
 	}
 
-	c.JSON(http.StatusOK, users)
+	c.JSON(http.StatusOK, users.Marshall(c.GetHeader("X-Public") == "true"))
 }

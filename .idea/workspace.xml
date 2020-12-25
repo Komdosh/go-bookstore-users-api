@@ -19,15 +19,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da6052ef-f04a-4edb-858c-77ad0fd4fc93" name="Default Changelist" comment="feat(sql): update/delete methods for users">
+    <list default="true" id="da6052ef-f04a-4edb-858c-77ad0fd4fc93" name="Default Changelist" comment="feat(sql): find users by status">
+      <change afterPath="$PROJECT_DIR$/domain/users/user_marshaller.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/crypto_utils/crypto_utls.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/url_mappings.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/url_mappings.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/users/users_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/users/users_controller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasources/postgresql/users_db/users_db.go" beforeDir="false" afterPath="$PROJECT_DIR$/datasources/postgresql/users_db/users_db.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/domain/users/user_dao.go" beforeDir="false" afterPath="$PROJECT_DIR$/domain/users/user_dao.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/domain/users/user_dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/domain/users/user_dto.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/user_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/services/user_service.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-requests.http" beforeDir="false" afterPath="$PROJECT_DIR$/user-requests.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/date/date_utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/date/date_utils.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/date/date_utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/date_utils/date_utils.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/errors/rest_error.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/errors_utils/rest_error.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/postgres_utils/postgres_util.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/postgres_utils/postgres_util.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +85,62 @@
   <component name="RestClientSettings">
     <option name="REQUEST_HISTORY">
       <list>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/internal/users/search" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="X-Public" />
+                <option name="value" value="false" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="status" />
+                <option name="value" value="active" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/internal/users/search" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="X-Public" />
+                <option name="value" value="true" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="status" />
+                <option name="value" value="active" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
         <RestClientRequest>
           <option name="httpMethod" value="GET" />
           <option name="urlBase" value="http://localhost:8080/internal/users/search" />
@@ -425,8 +485,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="HTTP Request.user-requests#4" />
-        <item itemvalue="HTTP Request.user-requests#1" />
         <item itemvalue="Go Build.go build github.com/Komdosh/go-bookstore-users-api" />
+        <item itemvalue="HTTP Request.user-requests#1" />
         <item itemvalue="HTTP Request.user-requests#3" />
         <item itemvalue="HTTP Request.get-requests#3" />
       </list>
@@ -457,6 +517,7 @@
     <MESSAGE value="feat(sql): save user to db" />
     <MESSAGE value="feat(sql): implement get user request" />
     <MESSAGE value="feat(sql): update/delete methods for users" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(sql): update/delete methods for users" />
+    <MESSAGE value="feat(sql): find users by status" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(sql): find users by status" />
   </component>
 </project>

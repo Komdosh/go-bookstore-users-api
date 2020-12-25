@@ -3,7 +3,7 @@ package users
 import (
 	"fmt"
 	"github.com/Komdosh/go-bookstore-users-api/datasources/postgresql/users_db"
-	"github.com/Komdosh/go-bookstore-users-api/utils/errors"
+	"github.com/Komdosh/go-bookstore-users-api/utils/errors_utils"
 	"github.com/Komdosh/go-bookstore-users-api/utils/postgres_utils"
 )
 
@@ -15,10 +15,10 @@ const (
 	queryFindUserByStatus = "SELECT id, first_name, last_name, email, date_created, status FROM users_db.users WHERE status = $1;"
 )
 
-func (user *User) Get() *errors.RestErr {
+func (user *User) Get() *errors_utils.RestErr {
 	stmt, err := users_db.Client.Prepare(querySelectUserById)
 	if err != nil {
-		return errors.NewInternalServerError(err.Error())
+		return errors_utils.NewInternalServerError(err.Error())
 	}
 	defer stmt.Close()
 
@@ -29,10 +29,10 @@ func (user *User) Get() *errors.RestErr {
 	return nil
 }
 
-func (user *User) Save() *errors.RestErr {
+func (user *User) Save() *errors_utils.RestErr {
 	stmt, err := users_db.Client.Prepare(queryInsertUser)
 	if err != nil {
-		return errors.NewInternalServerError(err.Error())
+		return errors_utils.NewInternalServerError(err.Error())
 	}
 	defer stmt.Close()
 
@@ -48,10 +48,10 @@ func (user *User) Save() *errors.RestErr {
 	return nil
 }
 
-func (user *User) Update(newUser User) *errors.RestErr {
+func (user *User) Update(newUser User) *errors_utils.RestErr {
 	stmt, err := users_db.Client.Prepare(queryUpdateUser)
 	if err != nil {
-		return errors.NewInternalServerError(err.Error())
+		return errors_utils.NewInternalServerError(err.Error())
 	}
 	defer stmt.Close()
 
@@ -64,10 +64,10 @@ func (user *User) Update(newUser User) *errors.RestErr {
 	return nil
 }
 
-func (user *User) Delete() *errors.RestErr {
+func (user *User) Delete() *errors_utils.RestErr {
 	stmt, err := users_db.Client.Prepare(queryDeleteUser)
 	if err != nil {
-		return errors.NewInternalServerError(err.Error())
+		return errors_utils.NewInternalServerError(err.Error())
 	}
 	defer stmt.Close()
 
@@ -80,17 +80,17 @@ func (user *User) Delete() *errors.RestErr {
 	return nil
 }
 
-func (user *User) FindByStatus(status string) ([]User, *errors.RestErr) {
+func (user *User) FindByStatus(status string) (Users, *errors_utils.RestErr) {
 	stmt, err := users_db.Client.Prepare(queryFindUserByStatus)
 	if err != nil {
-		return nil, errors.NewInternalServerError(err.Error())
+		return nil, errors_utils.NewInternalServerError(err.Error())
 	}
 	defer stmt.Close()
 
 	rows, err := stmt.Query(status)
 
 	if err != nil {
-		return nil, errors.NewInternalServerError(err.Error())
+		return nil, errors_utils.NewInternalServerError(err.Error())
 	}
 	defer rows.Close()
 
@@ -105,7 +105,7 @@ func (user *User) FindByStatus(status string) ([]User, *errors.RestErr) {
 	}
 
 	if len(results) == 0 {
-		return nil, errors.NewNotFoundError(fmt.Sprintf("no users matching status %s", status))
+		return nil, errors_utils.NewNotFoundError(fmt.Sprintf("no users matching status %s", status))
 	}
 
 	return results, nil

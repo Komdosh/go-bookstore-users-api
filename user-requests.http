@@ -1,5 +1,6 @@
 POST http://localhost:8080/users
 Content-Type: application/json
+X-Public: false
 
 {
   "first_name": "Andrey",
@@ -12,11 +13,13 @@ Content-Type: application/json
 
 GET http://localhost:8080/users/13
 Content-Type: application/json
+X-Public: false
 
 ###
 
 PUT http://localhost:8080/users/13
 Content-Type: application/json
+X-Public: false
 
 {
   "id": 13,
@@ -30,3 +33,4 @@ Content-Type: application/json
 
 GET http://localhost:8080/internal/users/search?status=active
 Content-Type: application/json
+X-Public: false
