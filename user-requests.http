@@ -4,7 +4,8 @@ Content-Type: application/json
 {
   "first_name": "Andrey",
   "last_name": "Tabakov",
-  "email": "komdosh@yandex.ru"
+  "email": "komdosh@yandex1.ru",
+  "password": "123"
 }
 
 ###
@@ -24,3 +25,8 @@ Content-Type: application/json
   "email": "komdosh@yandex.ru",
   "date_created": "12-08-2020T080:33:46Z"
 }
+
+###
+
+GET http://localhost:8080/internal/users/search?status=active
+Content-Type: application/json

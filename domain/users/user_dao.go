@@ -1,17 +1,18 @@
 package users
 
 import (
+	"fmt"
 	"github.com/Komdosh/go-bookstore-users-api/datasources/postgresql/users_db"
-	"github.com/Komdosh/go-bookstore-users-api/utils/date"
 	"github.com/Komdosh/go-bookstore-users-api/utils/errors"
 	"github.com/Komdosh/go-bookstore-users-api/utils/postgres_utils"
 )
 
 const (
-	queryInsertUser     = "INSERT INTO users_db.users(first_name, last_name, email, date_created) VALUES ($1, $2, $3, $4) RETURNING id;"
-	querySelectUserById = "SELECT id, first_name, last_name, email, date_created FROM users_db.users WHERE id = $1;"
-	queryUpdateUser     = "UPDATE users_db.users SET first_name=$1, last_name=$2, email=$3 WHERE id=$4;"
-	queryDeleteUser     = "DELETE FROM users_db.users WHERE id=$1;"
+	queryInsertUser       = "INSERT INTO users_db.users(first_name, last_name, email, date_created, password, status) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;"
+	querySelectUserById   = "SELECT id, first_name, last_name, email, date_created, status FROM users_db.users WHERE id = $1;"
+	queryUpdateUser       = "UPDATE users_db.users SET first_name=$1, last_name=$2, email=$3 WHERE id=$4;"
+	queryDeleteUser       = "DELETE FROM users_db.users WHERE id=$1;"
+	queryFindUserByStatus = "SELECT id, first_name, last_name, email, date_created, status FROM users_db.users WHERE status = $1;"
 )
 
 func (user *User) Get() *errors.RestErr {
@@ -21,7 +22,7 @@ func (user *User) Get() *errors.RestErr {
 	}
 	defer stmt.Close()
 
-	if err := stmt.QueryRow(user.Id).Scan(&user.Id, &user.FirstName, &user.LastName, &user.Email, &user.DateCreated); err != nil {
+	if err := stmt.QueryRow(user.Id).Scan(&user.Id, &user.FirstName, &user.LastName, &user.Email, &user.DateCreated, &user.Status); err != nil {
 		return postgres_utils.ParseErr(err)
 	}
 
@@ -35,10 +36,8 @@ func (user *User) Save() *errors.RestErr {
 	}
 	defer stmt.Close()
 
-	user.DateCreated = date.GetNowString()
-
 	var userId int64
-	saveErr := stmt.QueryRow(user.FirstName, user.LastName, user.Email, user.DateCreated).Scan(&userId)
+	saveErr := stmt.QueryRow(user.FirstName, user.LastName, user.Email, user.DateCreated, user.Password, user.Status).Scan(&userId)
 
 	if saveErr != nil {
 		return postgres_utils.ParseErr(saveErr)
@@ -79,4 +78,35 @@ func (user *User) Delete() *errors.RestErr {
 	}
 
 	return nil
+}
+
+func (user *User) FindByStatus(status string) ([]User, *errors.RestErr) {
+	stmt, err := users_db.Client.Prepare(queryFindUserByStatus)
+	if err != nil {
+		return nil, errors.NewInternalServerError(err.Error())
+	}
+	defer stmt.Close()
+
+	rows, err := stmt.Query(status)
+
+	if err != nil {
+		return nil, errors.NewInternalServerError(err.Error())
+	}
+	defer rows.Close()
+
+	results := make([]User, 0)
+
+	for rows.Next() {
+		var user User
+		if err := rows.Scan(&user.Id, &user.FirstName, &user.LastName, &user.Email, &user.DateCreated, &user.Status); err != nil {
+			return nil, postgres_utils.ParseErr(err)
+		}
+		results = append(results, user)
+	}
+
+	if len(results) == 0 {
+		return nil, errors.NewNotFoundError(fmt.Sprintf("no users matching status %s", status))
+	}
+
+	return results, nil
 }
