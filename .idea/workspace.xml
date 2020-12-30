@@ -19,10 +19,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da6052ef-f04a-4edb-858c-77ad0fd4fc93" name="Default Changelist" comment="feat(dao): implement user dao">
-      <change afterPath="$PROJECT_DIR$/utils/date/date_utils.go" afterDir="false" />
+    <list default="true" id="da6052ef-f04a-4edb-858c-77ad0fd4fc93" name="Default Changelist" comment="feat(sql): find users by status">
+      <change afterPath="$PROJECT_DIR$/domain/users/user_marshaller.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/crypto_utils/crypto_utls.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/users/users_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/users/users_controller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasources/postgresql/users_db/users_db.go" beforeDir="false" afterPath="$PROJECT_DIR$/datasources/postgresql/users_db/users_db.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/domain/users/user_dao.go" beforeDir="false" afterPath="$PROJECT_DIR$/domain/users/user_dao.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/users/user_dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/domain/users/user_dto.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/user_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/services/user_service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-requests.http" beforeDir="false" afterPath="$PROJECT_DIR$/user-requests.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/date/date_utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/date_utils/date_utils.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/errors/rest_error.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/errors_utils/rest_error.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/postgres_utils/postgres_util.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/postgres_utils/postgres_util.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +49,13 @@
   </component>
   <component name="GOROOT" path="C:\Users\atabakov\sdk\go1.15.3" />
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="ProjectId" id="1kmFDgC1fgOPxUZmDjFdbfXckax" />
   <component name="ProjectViewState">
@@ -48,8 +63,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="postgresql" />
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
@@ -68,6 +85,300 @@
   <component name="RestClientSettings">
     <option name="REQUEST_HISTORY">
       <list>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/internal/users/search" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="X-Public" />
+                <option name="value" value="false" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="status" />
+                <option name="value" value="active" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/internal/users/search" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="X-Public" />
+                <option name="value" value="true" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="status" />
+                <option name="value" value="active" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/internal/users/search" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="status" />
+                <option name="value" value="active" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/users" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;first_name&quot;: &quot;Andrey&quot;,&#10;  &quot;last_name&quot;: &quot;Tabakov&quot;,&#10;  &quot;email&quot;: &quot;komdosh@yandex1.ru&quot;,&#10;  &quot;password&quot;: &quot;123&quot;&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/users" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;first_name&quot;: &quot;Andrey&quot;,&#10;  &quot;last_name&quot;: &quot;Tabakov&quot;,&#10;  &quot;email&quot;: &quot;komdosh@yandex1.ru&quot;&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="PUT" />
+          <option name="urlBase" value="http://localhost:8080/users/13" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;id&quot;: 13,&#10;  &quot;first_name&quot;: &quot;Andrey&quot;,&#10;  &quot;last_name&quot;: &quot;Tabakov&quot;,&#10;  &quot;email&quot;: &quot;komdosh@yandex.ru&quot;,&#10;  &quot;date_created&quot;: &quot;12-08-2020T080:33:46Z&quot;&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="PUT" />
+          <option name="urlBase" value="http://localhost:8080/users/13" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;id&quot;: 13,&#10;  &quot;first_name&quot;: &quot;Andreyy&quot;,&#10;  &quot;last_name&quot;: &quot;Tabakov&quot;,&#10;  &quot;email&quot;: &quot;komdosh@yandex.ru&quot;,&#10;  &quot;date_created&quot;: &quot;12-08-2020T080:33:46Z&quot;&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="https://httpbin.org/get" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="show_env" />
+                <option name="value" value="1" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/users/13" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="PUT" />
+          <option name="urlBase" value="http://localhost:8080/users/13" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;id&quot;: &quot;13&quot;,&#10;  &quot;first_name&quot;: &quot;Andreyy&quot;,&#10;  &quot;last_name&quot;: &quot;Tabakov&quot;,&#10;  &quot;email&quot;: &quot;komdosh@yandex.ru&quot;,&#10;  &quot;date_created&quot;: &quot;12-08-2020T080:33:46Z&quot;&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="PUT" />
+          <option name="urlBase" value="http://localhost:8080/users/13" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;Id&quot;: &quot;13&quot;,&#10;  &quot;first_name&quot;: &quot;Andreyy&quot;,&#10;  &quot;last_name&quot;: &quot;Tabakov&quot;,&#10;  &quot;email&quot;: &quot;komdosh@yandex.ru&quot;,&#10;  &quot;date_created&quot;: &quot;12-08-2020T080:33:46Z&quot;&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="PUT" />
+          <option name="urlBase" value="http://localhost:8080/users/13" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;id&quot;: 13,&#10;  &quot;first_name&quot;: &quot;Andreyy&quot;,&#10;  &quot;last_name&quot;: &quot;Tabakov&quot;,&#10;  &quot;email&quot;: &quot;komdosh@yandex.ru&quot;&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="PUT" />
+          <option name="urlBase" value="http://localhost:8080/users/13" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;first_name&quot;: &quot;Andreyy&quot;,&#10;  &quot;last_name&quot;: &quot;Tabakov&quot;,&#10;  &quot;email&quot;: &quot;komdosh@yandex.ru&quot;&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/users/133" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/users" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;first_name&quot;: &quot;Andrey&quot;,&#10;  &quot;last_name&quot;: &quot;Tabakov&quot;,&#10;  &quot;email&quot;: &quot;komdosh@yandex.ru&quot;&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/users/123" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;id&quot;: 13&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
         <RestClientRequest>
           <option name="httpMethod" value="GET" />
           <option name="urlBase" value="http://localhost:8080/users/123" />
@@ -129,33 +440,55 @@
             </list>
           </option>
           <option name="haveTextToSend" value="true" />
-          <option name="textToSend" value="{&#10;  &quot;id&quot;: 123,&#10;  &quot;firstName&quot;: &quot;Andrey&quot;,&#10;  &quot;lastName&quot;: &quot;Andrey&quot;,&#10;  &quot;email&quot;: &quot;Andrey&quot;&#10;}" />
+          <option name="textToSend" value="{&#10;  &quot;id&quot;: 123,&#10;  &quot;first_ame&quot;: &quot;Andrey&quot;,&#10;  &quot;last_name&quot;: &quot;Tabakov&quot;,&#10;  &quot;email&quot;: &quot;komdosh@yandex.ru&quot;&#10;}" />
           <option name="filesToSend" value="" />
         </RestClientRequest>
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="HTTP Request.user-requests#2">
+  <component name="RunManager" selected="HTTP Request.user-requests#4">
     <configuration name="go build github.com/Komdosh/go-bookstore-users-api" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="go-bookstore-users-api" />
       <working_directory value="$PROJECT_DIR$" />
+      <envs>
+        <env name="postgres_users_username" value="gousr" />
+        <env name="postgres_users_password" value="gousr" />
+        <env name="postgres_users_host" value="127.0.0.1" />
+        <env name="postgres_users_port" value="5432" />
+        <env name="postgres_users_database" value="gomicroservices" />
+      </envs>
       <kind value="PACKAGE" />
       <filePath value="$PROJECT_DIR$/main.go" />
       <package value="github.com/Komdosh/go-bookstore-users-api" />
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
+    <configuration name="get-requests#3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="jar://$APPLICATION_HOME_DIR$/plugins/restClient/lib/restClient.jar!/com/intellij/ws/rest/client/requests/collection/get-requests.http" index="3" runType="Run single request">
+      <method v="2" />
+    </configuration>
     <configuration name="user-requests#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/user-requests.http" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="user-requests#2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/user-requests.http" index="2" runType="Run single request">
+    <configuration name="user-requests#3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/user-requests.http" index="3" runType="Run single request">
       <method v="2" />
     </configuration>
+    <configuration name="user-requests#4" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/user-requests.http" index="4" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Go Build.go build github.com/Komdosh/go-bookstore-users-api" />
+      <item itemvalue="HTTP Request.user-requests#3" />
+      <item itemvalue="HTTP Request.get-requests#3" />
+      <item itemvalue="HTTP Request.user-requests#4" />
+      <item itemvalue="HTTP Request.user-requests#1" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.user-requests#2" />
-        <item itemvalue="HTTP Request.user-requests#1" />
+        <item itemvalue="HTTP Request.user-requests#4" />
         <item itemvalue="Go Build.go build github.com/Komdosh/go-bookstore-users-api" />
+        <item itemvalue="HTTP Request.user-requests#1" />
+        <item itemvalue="HTTP Request.user-requests#3" />
+        <item itemvalue="HTTP Request.get-requests#3" />
       </list>
     </recent_temporary>
   </component>
@@ -179,40 +512,12 @@
     <MESSAGE value="feat(init): skeleton of project" />
     <MESSAGE value="feat(controller): add user controller" />
     <MESSAGE value="feat(dao): implement user dao" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(dao): implement user dao" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="828" y="183" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606727291238">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="828" y="183" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1606727291238" />
-    <state x="1220" y="283" key="FileChooserDialogImpl" timestamp="1606383322383">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="1220" y="283" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1606383322383" />
-    <state width="914" height="284" key="GridCell.Tab.0.bottom" timestamp="1606972114921">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="914" height="284" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1606972114921" />
-    <state width="914" height="284" key="GridCell.Tab.0.center" timestamp="1606972114921">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="914" height="284" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1606972114921" />
-    <state width="914" height="284" key="GridCell.Tab.0.left" timestamp="1606972114921">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="914" height="284" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1606972114921" />
-    <state width="914" height="284" key="GridCell.Tab.0.right" timestamp="1606972114921">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="914" height="284" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1606972114921" />
-    <state x="1032" y="248" key="Vcs.Push.Dialog.v2" timestamp="1606971964035">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="1032" y="248" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1606971964035" />
-    <state x="1103" y="233" width="672" height="678" key="search.everywhere.popup" timestamp="1606727371868">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="1103" y="233" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1606727371868" />
+    <MESSAGE value="feat(date): add date utils" />
+    <MESSAGE value="feat(sql): add db connection" />
+    <MESSAGE value="feat(sql): save user to db" />
+    <MESSAGE value="feat(sql): implement get user request" />
+    <MESSAGE value="feat(sql): update/delete methods for users" />
+    <MESSAGE value="feat(sql): find users by status" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(sql): find users by status" />
   </component>
 </project>
