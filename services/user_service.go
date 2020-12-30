@@ -7,7 +7,22 @@ import (
 	"github.com/Komdosh/go-bookstore-users-api/utils/errors_utils"
 )
 
-func CreateUser(user users.User) (*users.User, *errors_utils.RestErr) {
+var (
+	UsersService usersServiceInterface = &usersService{}
+)
+
+type usersService struct {
+}
+
+type usersServiceInterface interface {
+	CreateUser(user users.User) (*users.User, *errors_utils.RestErr)
+	GetUser(userId int64) (*users.User, *errors_utils.RestErr)
+	UpdateUser(isPartial bool, user users.User) (*users.User, *errors_utils.RestErr)
+	DeleteUser(userId int64) *errors_utils.RestErr
+	SearchUser(status string) (users.Users, *errors_utils.RestErr)
+}
+
+func (s *usersService) CreateUser(user users.User) (*users.User, *errors_utils.RestErr) {
 	if err := user.Validate(); err != nil {
 		return nil, err
 	}
@@ -23,7 +38,7 @@ func CreateUser(user users.User) (*users.User, *errors_utils.RestErr) {
 	return &user, nil
 }
 
-func GetUser(userId int64) (*users.User, *errors_utils.RestErr) {
+func (s *usersService) GetUser(userId int64) (*users.User, *errors_utils.RestErr) {
 	result := &users.User{Id: userId}
 
 	if err := result.Get(); err != nil {
@@ -33,8 +48,8 @@ func GetUser(userId int64) (*users.User, *errors_utils.RestErr) {
 	return result, nil
 }
 
-func UpdateUser(isPartial bool, user users.User) (*users.User, *errors_utils.RestErr) {
-	current, err := GetUser(user.Id)
+func (s *usersService) UpdateUser(isPartial bool, user users.User) (*users.User, *errors_utils.RestErr) {
+	current, err := s.GetUser(user.Id)
 
 	if err != nil {
 		return nil, err
@@ -62,13 +77,13 @@ func UpdateUser(isPartial bool, user users.User) (*users.User, *errors_utils.Res
 	return current, nil
 }
 
-func DeleteUser(userId int64) *errors_utils.RestErr {
+func (s *usersService) DeleteUser(userId int64) *errors_utils.RestErr {
 	user := &users.User{Id: userId}
 
 	return user.Delete()
 }
 
-func Search(status string) (users.Users, *errors_utils.RestErr) {
+func (s *usersService) SearchUser(status string) (users.Users, *errors_utils.RestErr) {
 	dao := &users.User{}
 	return dao.FindByStatus(status)
 }

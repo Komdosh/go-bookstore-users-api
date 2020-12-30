@@ -19,19 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da6052ef-f04a-4edb-858c-77ad0fd4fc93" name="Default Changelist" comment="feat(sql): find users by status">
-      <change afterPath="$PROJECT_DIR$/domain/users/user_marshaller.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/crypto_utils/crypto_utls.go" afterDir="false" />
+    <list default="true" id="da6052ef-f04a-4edb-858c-77ad0fd4fc93" name="Default Changelist" comment="feat(sql): add private and public user struct">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/users/users_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/users/users_controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasources/postgresql/users_db/users_db.go" beforeDir="false" afterPath="$PROJECT_DIR$/datasources/postgresql/users_db/users_db.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/users/user_dao.go" beforeDir="false" afterPath="$PROJECT_DIR$/domain/users/user_dao.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/users/user_dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/domain/users/user_dto.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/user_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/services/user_service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-requests.http" beforeDir="false" afterPath="$PROJECT_DIR$/user-requests.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/date/date_utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/date_utils/date_utils.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/errors/rest_error.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/errors_utils/rest_error.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/postgres_utils/postgres_util.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/postgres_utils/postgres_util.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -446,17 +437,10 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="HTTP Request.user-requests#4">
+  <component name="RunManager" selected="HTTP Request.user-requests#2">
     <configuration name="go build github.com/Komdosh/go-bookstore-users-api" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="go-bookstore-users-api" />
       <working_directory value="$PROJECT_DIR$" />
-      <envs>
-        <env name="postgres_users_username" value="gousr" />
-        <env name="postgres_users_password" value="gousr" />
-        <env name="postgres_users_host" value="127.0.0.1" />
-        <env name="postgres_users_port" value="5432" />
-        <env name="postgres_users_database" value="gomicroservices" />
-      </envs>
       <kind value="PACKAGE" />
       <filePath value="$PROJECT_DIR$/main.go" />
       <package value="github.com/Komdosh/go-bookstore-users-api" />
@@ -469,7 +453,7 @@
     <configuration name="user-requests#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/user-requests.http" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="user-requests#3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/user-requests.http" index="3" runType="Run single request">
+    <configuration name="user-requests#2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/user-requests.http" index="2" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="user-requests#4" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/user-requests.http" index="4" runType="Run single request">
@@ -477,18 +461,18 @@
     </configuration>
     <list>
       <item itemvalue="Go Build.go build github.com/Komdosh/go-bookstore-users-api" />
-      <item itemvalue="HTTP Request.user-requests#3" />
       <item itemvalue="HTTP Request.get-requests#3" />
       <item itemvalue="HTTP Request.user-requests#4" />
       <item itemvalue="HTTP Request.user-requests#1" />
+      <item itemvalue="HTTP Request.user-requests#2" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="HTTP Request.user-requests#2" />
+        <item itemvalue="HTTP Request.user-requests#1" />
+        <item itemvalue="Go Build.go build github.com/Komdosh/go-bookstore-users-api" />
         <item itemvalue="HTTP Request.user-requests#4" />
         <item itemvalue="Go Build.go build github.com/Komdosh/go-bookstore-users-api" />
-        <item itemvalue="HTTP Request.user-requests#1" />
-        <item itemvalue="HTTP Request.user-requests#3" />
-        <item itemvalue="HTTP Request.get-requests#3" />
       </list>
     </recent_temporary>
   </component>
@@ -518,6 +502,7 @@
     <MESSAGE value="feat(sql): implement get user request" />
     <MESSAGE value="feat(sql): update/delete methods for users" />
     <MESSAGE value="feat(sql): find users by status" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(sql): find users by status" />
+    <MESSAGE value="feat(sql): add private and public user struct" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(sql): add private and public user struct" />
   </component>
 </project>
