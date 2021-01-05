@@ -19,10 +19,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da6052ef-f04a-4edb-858c-77ad0fd4fc93" name="Default Changelist" comment="feat(sql): add private and public user struct">
+    <list default="true" id="da6052ef-f04a-4edb-858c-77ad0fd4fc93" name="Default Changelist" comment="feat(structure): add interface for user service">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/go_build_github_com_Komdosh_go_bookstore_users_api.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logger/logger.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/users/users_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/users/users_controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/services/user_service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/application.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/application.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/users/user_dao.go" beforeDir="false" afterPath="$PROJECT_DIR$/domain/users/user_dao.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/errors_utils/rest_error.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/errors_utils/rest_error.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,11 +48,20 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="sql" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1kmFDgC1fgOPxUZmDjFdbfXckax" />
   <component name="ProjectViewState">
@@ -62,6 +77,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/domain/users" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -437,16 +453,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="HTTP Request.user-requests#2">
-    <configuration name="go build github.com/Komdosh/go-bookstore-users-api" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="go-bookstore-users-api" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <filePath value="$PROJECT_DIR$/main.go" />
-      <package value="github.com/Komdosh/go-bookstore-users-api" />
-      <directory value="$PROJECT_DIR$" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Go Build.go build github.com/Komdosh/go-bookstore-users-api">
     <configuration name="get-requests#3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="jar://$APPLICATION_HOME_DIR$/plugins/restClient/lib/restClient.jar!/com/intellij/ws/rest/client/requests/collection/get-requests.http" index="3" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -470,7 +477,6 @@
       <list>
         <item itemvalue="HTTP Request.user-requests#2" />
         <item itemvalue="HTTP Request.user-requests#1" />
-        <item itemvalue="Go Build.go build github.com/Komdosh/go-bookstore-users-api" />
         <item itemvalue="HTTP Request.user-requests#4" />
         <item itemvalue="Go Build.go build github.com/Komdosh/go-bookstore-users-api" />
       </list>
@@ -503,6 +509,7 @@
     <MESSAGE value="feat(sql): update/delete methods for users" />
     <MESSAGE value="feat(sql): find users by status" />
     <MESSAGE value="feat(sql): add private and public user struct" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(sql): add private and public user struct" />
+    <MESSAGE value="feat(structure): add interface for user service" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(structure): add interface for user service" />
   </component>
 </project>
