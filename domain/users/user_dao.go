@@ -3,8 +3,8 @@ package users
 import (
 	"fmt"
 	"github.com/Komdosh/go-bookstore-users-api/datasources/postgresql/users_db"
+	"github.com/Komdosh/go-bookstore-users-api/logger"
 	"github.com/Komdosh/go-bookstore-users-api/utils/errors_utils"
-	"github.com/Komdosh/go-bookstore-users-api/utils/postgres_utils"
 )
 
 const (
@@ -18,12 +18,14 @@ const (
 func (user *User) Get() *errors_utils.RestErr {
 	stmt, err := users_db.Client.Prepare(querySelectUserById)
 	if err != nil {
-		return errors_utils.NewInternalServerError(err.Error())
+		logger.Error("error when trying to prepare get user statement", err)
+		return errors_utils.NewInternalServerError("database error")
 	}
 	defer stmt.Close()
 
 	if err := stmt.QueryRow(user.Id).Scan(&user.Id, &user.FirstName, &user.LastName, &user.Email, &user.DateCreated, &user.Status); err != nil {
-		return postgres_utils.ParseErr(err)
+		logger.Error("error when trying to get user by id", err)
+		return errors_utils.NewInternalServerError("database error")
 	}
 
 	return nil
@@ -32,15 +34,16 @@ func (user *User) Get() *errors_utils.RestErr {
 func (user *User) Save() *errors_utils.RestErr {
 	stmt, err := users_db.Client.Prepare(queryInsertUser)
 	if err != nil {
-		return errors_utils.NewInternalServerError(err.Error())
+		logger.Error("error when trying to prepare save user statement", err)
+		return errors_utils.NewInternalServerError("database error")
 	}
 	defer stmt.Close()
 
 	var userId int64
-	saveErr := stmt.QueryRow(user.FirstName, user.LastName, user.Email, user.DateCreated, user.Password, user.Status).Scan(&userId)
 
-	if saveErr != nil {
-		return postgres_utils.ParseErr(saveErr)
+	if err := stmt.QueryRow(user.FirstName, user.LastName, user.Email, user.DateCreated, user.Password, user.Status).Scan(&userId); err != nil {
+		logger.Error("error when trying to save user", err)
+		return errors_utils.NewInternalServerError("database error")
 	}
 
 	user.Id = userId
@@ -51,14 +54,14 @@ func (user *User) Save() *errors_utils.RestErr {
 func (user *User) Update(newUser User) *errors_utils.RestErr {
 	stmt, err := users_db.Client.Prepare(queryUpdateUser)
 	if err != nil {
-		return errors_utils.NewInternalServerError(err.Error())
+		logger.Error("error when trying to prepare update user statement", err)
+		return errors_utils.NewInternalServerError("database error")
 	}
 	defer stmt.Close()
 
-	_, err = stmt.Exec(user.FirstName, user.LastName, user.Email, user.Id)
-
-	if err != nil {
-		return postgres_utils.ParseErr(err)
+	if _, err = stmt.Exec(user.FirstName, user.LastName, user.Email, user.Id); err != nil {
+		logger.Error("error when trying to update user", err)
+		return errors_utils.NewInternalServerError("database error")
 	}
 
 	return nil
@@ -67,14 +70,14 @@ func (user *User) Update(newUser User) *errors_utils.RestErr {
 func (user *User) Delete() *errors_utils.RestErr {
 	stmt, err := users_db.Client.Prepare(queryDeleteUser)
 	if err != nil {
-		return errors_utils.NewInternalServerError(err.Error())
+		logger.Error("error when trying to prepare delete user statement", err)
+		return errors_utils.NewInternalServerError("database error")
 	}
 	defer stmt.Close()
 
-	_, err = stmt.Exec(user.Id)
-
-	if err != nil {
-		return postgres_utils.ParseErr(err)
+	if _, err = stmt.Exec(user.Id); err != nil {
+		logger.Error("error when trying to delete user", err)
+		return errors_utils.NewInternalServerError("database error")
 	}
 
 	return nil
@@ -83,14 +86,16 @@ func (user *User) Delete() *errors_utils.RestErr {
 func (user *User) FindByStatus(status string) (Users, *errors_utils.RestErr) {
 	stmt, err := users_db.Client.Prepare(queryFindUserByStatus)
 	if err != nil {
-		return nil, errors_utils.NewInternalServerError(err.Error())
+		logger.Error("error when trying to prepare find user by status statement", err)
+		return nil, errors_utils.NewInternalServerError("database error")
 	}
 	defer stmt.Close()
 
 	rows, err := stmt.Query(status)
 
 	if err != nil {
-		return nil, errors_utils.NewInternalServerError(err.Error())
+		logger.Error("error when trying to find user by status", err)
+		return nil, errors_utils.NewInternalServerError("database error")
 	}
 	defer rows.Close()
 
@@ -99,7 +104,8 @@ func (user *User) FindByStatus(status string) (Users, *errors_utils.RestErr) {
 	for rows.Next() {
 		var user User
 		if err := rows.Scan(&user.Id, &user.FirstName, &user.LastName, &user.Email, &user.DateCreated, &user.Status); err != nil {
-			return nil, postgres_utils.ParseErr(err)
+			logger.Error("error scan user by status", err)
+			return nil, errors_utils.NewInternalServerError("database error")
 		}
 		results = append(results, user)
 	}

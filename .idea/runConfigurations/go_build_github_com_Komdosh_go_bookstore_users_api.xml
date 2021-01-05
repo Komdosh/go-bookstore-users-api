@@ -1,0 +1,18 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="go build github.com/Komdosh/go-bookstore-users-api" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
+    <module name="go-bookstore-users-api" />
+    <working_directory value="$PROJECT_DIR$" />
+    <envs>
+      <env name="postgres_users_username" value="gousr" />
+      <env name="postgres_users_password" value="gousr" />
+      <env name="postgres_users_host" value="localhost" />
+      <env name="postgres_users_port" value="5432" />
+      <env name="postgres_users_database" value="gomicroservices" />
+    </envs>
+    <kind value="PACKAGE" />
+    <filePath value="$PROJECT_DIR$/main.go" />
+    <package value="github.com/Komdosh/go-bookstore-users-api" />
+    <directory value="$PROJECT_DIR$" />
+    <method v="2" />
+  </configuration>
+</component>
