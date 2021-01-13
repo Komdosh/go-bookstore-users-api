@@ -1,6 +1,7 @@
 package users
 
 import (
+	"database/sql"
 	"fmt"
 	"github.com/Komdosh/go-bookstore-users-api/datasources/postgresql/users_db"
 	"github.com/Komdosh/go-bookstore-users-api/logger"
@@ -8,11 +9,12 @@ import (
 )
 
 const (
-	queryInsertUser       = "INSERT INTO users_db.users(first_name, last_name, email, date_created, password, status) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;"
-	querySelectUserById   = "SELECT id, first_name, last_name, email, date_created, status FROM users_db.users WHERE id = $1;"
-	queryUpdateUser       = "UPDATE users_db.users SET first_name=$1, last_name=$2, email=$3 WHERE id=$4;"
-	queryDeleteUser       = "DELETE FROM users_db.users WHERE id=$1;"
-	queryFindUserByStatus = "SELECT id, first_name, last_name, email, date_created, status FROM users_db.users WHERE status = $1;"
+	queryInsertUser                 = "INSERT INTO users_db.users(first_name, last_name, email, date_created, password, status) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;"
+	querySelectUserById             = "SELECT id, first_name, last_name, email, date_created, status FROM users_db.users WHERE id = $1;"
+	queryUpdateUser                 = "UPDATE users_db.users SET first_name=$1, last_name=$2, email=$3 WHERE id=$4;"
+	queryDeleteUser                 = "DELETE FROM users_db.users WHERE id=$1;"
+	queryFindUserByStatus           = "SELECT id, first_name, last_name, email, date_created, status FROM users_db.users WHERE status = $1;"
+	queryFindUserByEmailAndPassword = "SELECT id, first_name, last_name, email, date_created, status FROM users_db.users WHERE email = $1 AND password=$2 AND status = $3;"
 )
 
 func (user *User) Get() *errors_utils.RestErr {
@@ -115,4 +117,24 @@ func (user *User) FindByStatus(status string) (Users, *errors_utils.RestErr) {
 	}
 
 	return results, nil
+}
+
+func (user *User) FindByEmailAndPassword() *errors_utils.RestErr {
+	stmt, err := users_db.Client.Prepare(queryFindUserByEmailAndPassword)
+	if err != nil {
+		logger.Error("error when trying to prepare find user by email and password statement", err)
+		return errors_utils.NewInternalServerError("database error")
+	}
+	defer stmt.Close()
+
+	if err := stmt.QueryRow(user.Email, user.Password, StatusActive).Scan(&user.Id, &user.FirstName, &user.LastName, &user.Email, &user.DateCreated, &user.Status); err != nil {
+		if err == sql.ErrNoRows {
+			return errors_utils.NewNotFoundError("invalid user credentials")
+		}
+
+		logger.Error("error when trying to get user by id", err)
+		return errors_utils.NewInternalServerError("database error")
+	}
+
+	return nil
 }

@@ -17,7 +17,7 @@ create table users_db.users
     last_name    varchar(255),
     email        varchar(255) not null,
     date_created timestamp,
-    password     varchar(32)  not null,
+    password     varchar(255)  not null,
     status       varchar(255) not null
 );
 

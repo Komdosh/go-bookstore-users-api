@@ -34,3 +34,14 @@ X-Public: false
 GET http://localhost:8080/internal/users/search?status=active
 Content-Type: application/json
 X-Public: false
+
+###
+
+POST http://localhost:8080/users/login
+Content-Type: application/json
+X-Public: false
+
+{
+  "email": "komdosh@yandex.ru",
+  "password": "0"
+}

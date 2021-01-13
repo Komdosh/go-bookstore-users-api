@@ -7,13 +7,13 @@ import (
 )
 
 const (
-	errorNoRows = "no rows in result set"
+	ErrorNoRows = "no rows in result set"
 )
 
 func ParseErr(err error) *errors_utils.RestErr {
 	sqlErr, ok := err.(*pq.Error)
 	if !ok {
-		if strings.Contains(err.Error(), errorNoRows) {
+		if strings.Contains(err.Error(), ErrorNoRows) {
 			return errors_utils.NewNotFoundError("no record matching given id")
 		}
 
