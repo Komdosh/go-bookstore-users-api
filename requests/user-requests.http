@@ -1,4 +1,4 @@
-POST http://localhost:8080/users
+POST http://localhost:8081/users
 Content-Type: application/json
 X-Public: false
 
@@ -11,13 +11,25 @@ X-Public: false
 
 ###
 
-GET http://localhost:8080/users/13
+GET http://localhost:8081/users/13?access_token=31e31d2fdd27b81ac7e8ad525a5bb0c35824af0c
+Content-Type: application/json
+X-Public: true
+
+###
+
+GET http://localhost:8081/users/13
+Content-Type: application/json
+X-Public: true
+
+###
+
+GET http://localhost:8081/users/13
 Content-Type: application/json
 X-Public: false
 
 ###
 
-PUT http://localhost:8080/users/13
+PUT http://localhost:8081/users/13
 Content-Type: application/json
 X-Public: false
 
@@ -31,13 +43,13 @@ X-Public: false
 
 ###
 
-GET http://localhost:8080/internal/users/search?status=active
+GET http://localhost:8081/internal/users/search?status=active
 Content-Type: application/json
 X-Public: false
 
 ###
 
-POST http://localhost:8080/users/login
+POST http://localhost:8081/users/login
 Content-Type: application/json
 X-Public: false
 

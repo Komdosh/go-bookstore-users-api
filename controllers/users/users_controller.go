@@ -1,6 +1,7 @@
 package users
 
 import (
+	"github.com/Komdosh/go-bookstore-oauth-client/oauth"
 	"github.com/Komdosh/go-bookstore-users-api/domain/users"
 	"github.com/Komdosh/go-bookstore-users-api/services"
 	"github.com/Komdosh/go-bookstore-users-api/utils/errors_utils"
@@ -37,6 +38,11 @@ func Create(c *gin.Context) {
 }
 
 func Get(c *gin.Context) {
+	if err := oauth.AuthenticateRequest(c.Request); err != nil {
+		c.JSON(err.Status, err)
+		return
+	}
+
 	userId, err := getUserId(c.Param("user_id"))
 	if err != nil {
 		c.JSON(err.Status, err)
@@ -49,7 +55,12 @@ func Get(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, user.Marshall(c.GetHeader("X-Public") == "true"))
+	if oauth.GetCallerId(c.Request) == user.Id {
+		c.JSON(http.StatusOK, user.Marshall(false))
+		return
+	}
+
+	c.JSON(http.StatusOK, user.Marshall(oauth.IsPublic(c.Request)))
 }
 
 func Update(c *gin.Context) {
@@ -76,7 +87,7 @@ func Update(c *gin.Context) {
 		c.JSON(err.Status, err)
 		return
 	}
-	c.JSON(http.StatusOK, result.Marshall(c.GetHeader("X-Public") == "true"))
+	c.JSON(http.StatusOK, result.Marshall(oauth.IsPublic(c.Request)))
 }
 
 func Delete(c *gin.Context) {
@@ -101,7 +112,7 @@ func Search(c *gin.Context) {
 		c.JSON(err.Status, err)
 	}
 
-	c.JSON(http.StatusOK, users.Marshall(c.GetHeader("X-Public") == "true"))
+	c.JSON(http.StatusOK, users.Marshall(oauth.IsPublic(c.Request)))
 }
 
 func Login(c *gin.Context) {
@@ -119,5 +130,5 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, user.Marshall(c.GetHeader("X-Public") == "true"))
+	c.JSON(http.StatusOK, user.Marshall(oauth.IsPublic(c.Request)))
 }
