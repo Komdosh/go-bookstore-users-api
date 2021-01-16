@@ -1,7 +1,7 @@
 package app
 
 import (
-	"github.com/Komdosh/go-bookstore-users-api/logger"
+	"github.com/Komdosh/go-bookstore-utils/logger"
 	"github.com/gin-gonic/gin"
 )
 
