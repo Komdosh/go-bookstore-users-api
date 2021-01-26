@@ -53,7 +53,7 @@ func (user *User) Save() rest_errors.RestErr {
 	return nil
 }
 
-func (user *User) Update(newUser User) rest_errors.RestErr {
+func (user *User) Update() rest_errors.RestErr {
 	stmt, err := users_db.Client.Prepare(queryUpdateUser)
 	if err != nil {
 		logger.Error("error when trying to prepare update user statement", err)
